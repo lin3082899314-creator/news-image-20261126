@@ -6,7 +6,7 @@
 
 One image summing up the world's news of Thursday 26 November 2026: a newspaper front page with 24 stories across 6 regions, plus 2 lead stories and 4 "also" items, drawn by generate_news_image.py from that day's reporting.
 
-Prepared, NOT submitted — awaiting the owner's approval before any public repository is created or any entry is submitted.
+Submitted to make.fun — submission 01a21d4c-1201-72bc-b30c-af18c66e3ed5 (round 3, all validity checks passed; grading under way, result due 2026-12-12).
 
 ## Run it
 
