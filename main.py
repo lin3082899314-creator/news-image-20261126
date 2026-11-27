@@ -1,35 +1,30 @@
 #!/usr/bin/env python3
-"""Copy the entry image to the output directory.
+"""Entry point for the make.fun news-image bounty.
 
-Entry for make.fun bounty "Sum up 26 November's world news in one image"
-(news-image-20261126, $100, 50 places).
-
-The artwork (entry.png, 646x1024, the newspaper front page summing up
-26 November 2026 world news) ships in this repository. This program
-copies it to $MAKEFUN_OUTPUT_DIR/entry.png, the path the grader reads.
-Standard library only, no network, deterministic: the same bytes out
-on every run.
+Copies the pre-rendered entry.png sitting next to this file into
+the output directory the harness points at with MAKEFUN_OUTPUT_DIR.
+Standard library only; no network, no fonts, no image libraries.
 """
 
 import os
 import shutil
 import sys
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 
-
-def main() -> int:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "out")
-    os.makedirs(out_dir, exist_ok=True)
-    src = os.path.join(HERE, "entry.png")
-    if not os.path.isfile(src):
-        print("missing entry.png next to main.py", file=sys.stderr)
+def main():
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR")
+    if not out_dir:
+        print("MAKEFUN_OUTPUT_DIR is not set", file=sys.stderr)
         return 1
-    dst = os.path.join(out_dir, "entry.png")
-    shutil.copyfile(src, dst)
-    print("wrote", dst)
+    here = os.path.dirname(os.path.abspath(__file__))
+    src = os.path.join(here, "entry.png")
+    if not os.path.isfile(src):
+        print("entry.png missing next to main.py", file=sys.stderr)
+        return 1
+    os.makedirs(out_dir, exist_ok=True)
+    shutil.copyfile(src, os.path.join(out_dir, "entry.png"))
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())
