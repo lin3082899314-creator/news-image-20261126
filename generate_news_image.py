@@ -241,7 +241,11 @@ d.line([(M, y), (W - M, y)], fill=RULE, width=2)
 y = y + 24
 
 # --- body: 3 columns, sections assigned to balance height
-cols = [[0, 1], [2, 5], [3, 4]]  # section indices per column
+# Measured section heights (bar top to next bar / last ink, px):
+# NA 1025, MIDDLE EAST 998, ASIA-PACIFIC 827, EUROPE ~806, TECH ~730,
+# AFRICA ~671. This pairing evens the columns (~1633-1728 px each);
+# the old pairing left column 3 ~330 px shorter than column 1.
+cols = [[0, 4], [2, 5], [1, 3]]  # section indices per column
 f_sec = font(F_SANS_B, 28)
 f_num = font(F_SANS_B, 26)
 f_head = font(F_SERIF_B, 27)
